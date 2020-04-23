@@ -3,7 +3,7 @@
     <div class="cover">
       <h1>我是封面</h1>
     </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld2 msg="Welcome to Your Vue.js App"/>
     <div class="more">
       <h1>更多資訊</h1>
     </div>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld2 from './components/HelloWorld2.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld2
   }
 }
 </script>

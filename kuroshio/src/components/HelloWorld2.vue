@@ -14,33 +14,35 @@
         <swiper-slide>Slide 5</swiper-slide> -->
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
-      <div v-if="isPopUp" class="popup">
-        <div class="popup-content-wrapper">
-          <div class="pop-title">
-            <h1>{{ popData.name }}</h1>
-          </div>
-          <div class="popup-content">
-            <div>{{ popData.content }}</div>
-            <div>
-              <img :src="popData.profile" alt="">
+      <transition name="slide-fade">
+        <div v-if="isPopUp" class="popup">
+          <div class="popup-content-wrapper">
+            <div class="pop-title">
+              <h1>{{ popData.name }}</h1>
             </div>
-            <div>
-              <video
-                  ref="video"
-                  class="video-player"
-                  height="100vh"
-                  :src="popData.videoSrc"
-                  :poster="popData.profile"
-                  playsinline
-                  muted
-                  autoplay="true">
-              </video>
+            <div class="popup-content">
+              <div>{{ popData.content }}</div>
+              <div>
+                <img :src="popData.profile" alt="">
+              </div>
+              <div>
+                <video
+                    ref="video"
+                    class="video-player"
+                    height="100vh"
+                    :src="popData.videoSrc"
+                    :poster="popData.profile"
+                    playsinline
+                    muted
+                    autoplay="true">
+                </video>
+              </div>
             </div>
           </div>
+          <div @click="handleClose" class="close">
         </div>
-        <div @click="handleClose" class="close">
       </div>
-    </div>  
+    </transition> 
   </div>
 </template>
 
@@ -133,6 +135,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.slide-fade-enter-active {
+  transition: all .8s cubic-bezier(1.0, 0.8, 0.5, 1.0);;
+}
+.slide-fade-leave-active {
+  transition: all .5s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(50%);
+  opacity: 0;
+}
 .stories-wrapper {
   position: relative;
   .swiper-wrapper {
